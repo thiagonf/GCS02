@@ -1,5 +1,7 @@
 Vagrant.configure(2) do |config|
 
+  config.vm.synced_folder ".", "/vagrant"
+
   config.vm.define "db" do |db|
     db.vm.box = "ubuntu/trusty64"
     db.vm.network "forwarded_port", guest: 5432, host: 5432
@@ -28,7 +30,8 @@ Vagrant.configure(2) do |config|
       vb1.gui = false
     end
 
-    web.vm.provision "shell", path: "web.sh" 
+    web.vm.provision "shell", path: "web.sh"
+      
   end
 
 end
